@@ -58,6 +58,10 @@ resource "docker_container" "bastion_host" {
     port        = 2222
   }
 
+  provisioner "local-exec" {
+    command = "chmod 0777 ${path.module}/../../../var/assets"
+  }
+
   provisioner "file" {
     source      = "${path.module}/../../../assets"
     destination = "/home/${var.vm_username}/"
@@ -99,7 +103,7 @@ resource "docker_container" "consul_server" {
   }
 
   provisioner "local-exec" {
-    command = "mkdir -p ${path.module}/../../../var/logs/${self.name}"
+    command = "mkdir -p ${path.module}/../../../var/logs/${self.name} && chmod 0777 ${path.module}/../../../var/logs/${self.name}"
   }
 
   volumes {
@@ -133,7 +137,7 @@ resource "docker_container" "gateway_api" {
   }
 
   provisioner "local-exec" {
-    command = "mkdir -p ${path.module}/../../../var/logs/${self.name}"
+    command = "mkdir -p ${path.module}/../../../var/logs/${self.name} && chmod 0777 ${path.module}/../../../var/logs/${self.name}"
   }
 
   volumes {
@@ -158,7 +162,7 @@ resource "docker_container" "gateway_terminating" {
   }
 
   provisioner "local-exec" {
-    command = "mkdir -p ${path.module}/../../../var/logs/${self.name}"
+    command = "mkdir -p ${path.module}/../../../var/logs/${self.name} && chmod 0777 ${path.module}/../../../var/logs/${self.name}"
   }
 
   volumes {
@@ -182,7 +186,7 @@ resource "docker_container" "gateway_mesh" {
   }
 
   provisioner "local-exec" {
-    command = "mkdir -p ${path.module}/../../../var/logs/${self.name}"
+    command = "mkdir -p ${path.module}/../../../var/logs/${self.name} && chmod 0777 ${path.module}/../../../var/logs/${self.name}"
   }
 
   volumes {
@@ -211,7 +215,7 @@ resource "docker_container" "consul-esm" {
   }
 
   provisioner "local-exec" {
-    command = "mkdir -p ${path.module}/../../../var/logs/${self.name}"
+    command = "mkdir -p ${path.module}/../../../var/logs/${self.name} && chmod 0777 ${path.module}/../../../var/logs/${self.name}"
   }
 
   volumes {
@@ -245,7 +249,7 @@ resource "docker_container" "hashicups_nginx" {
   }
 
   provisioner "local-exec" {
-    command = "mkdir -p ${path.module}/../../../var/logs/${self.name}"
+    command = "mkdir -p ${path.module}/../../../var/logs/${self.name} && chmod 0777 ${path.module}/../../../var/logs/${self.name}"
   }
 
   volumes {
@@ -268,7 +272,7 @@ resource "docker_container" "hashicups_frontend" {
   }
 
   provisioner "local-exec" {
-    command = "mkdir -p ${path.module}/../../../var/logs/${self.name}"
+    command = "mkdir -p ${path.module}/../../../var/logs/${self.name} && chmod 0777 ${path.module}/../../../var/logs/${self.name}"
   }
 
   volumes {
@@ -292,7 +296,7 @@ resource "docker_container" "hashicups_api" {
   }
 
   provisioner "local-exec" {
-    command = "mkdir -p ${path.module}/../../../var/logs/${self.name}"
+    command = "mkdir -p ${path.module}/../../../var/logs/${self.name} && chmod 0777 ${path.module}/../../../var/logs/${self.name}"
   }
 
   volumes {
@@ -316,7 +320,7 @@ resource "docker_container" "hashicups_db" {
   }
 
   provisioner "local-exec" {
-    command = "mkdir -p ${path.module}/../../../var/logs/${self.name}"
+    command = "mkdir -p ${path.module}/../../../var/logs/${self.name} && chmod 0777 ${path.module}/../../../var/logs/${self.name}"
   }
 
   volumes {
