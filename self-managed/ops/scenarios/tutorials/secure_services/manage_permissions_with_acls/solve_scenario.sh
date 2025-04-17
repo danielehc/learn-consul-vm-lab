@@ -445,7 +445,7 @@ Start Consul agent.'
 _command='/usr/bin/consul agent \
   -retry-join=consul \
   -log-file=/tmp/consul-client \
-  -config-dir=/etc/consul.d > /tmp/consul-client.log 2>&1 &'
+  -config-dir=/etc/consul.d > /tmp/logs/consul-client.log 2>&1 &'
 
 md_log_cmd "
 ${_command}"
@@ -498,7 +498,7 @@ Start Envoy sidecar proxy for hashicups-api service.'
 _command='/usr/bin/consul connect envoy \
   -token=${_agent_token} \
   -envoy-binary /usr/bin/envoy \
-  -sidecar-for hashicups-api-1 > /tmp/sidecar-proxy.log 2>&1 &'
+  -sidecar-for hashicups-api-1 > /tmp/logs/sidecar-proxy.log 2>&1 &'
 
 echo $_command
 
@@ -508,7 +508,7 @@ ${_command}"
 _command='/usr/bin/consul connect envoy \
   -token='${_agent_token}' \
   -envoy-binary /usr/bin/envoy \
-  -sidecar-for hashicups-api-1 > /tmp/sidecar-proxy.log 2>&1 &'
+  -sidecar-for hashicups-api-1 > /tmp/logs/sidecar-proxy.log 2>&1 &'
 
 remote_exec -o hashicups-api-1 "${_command}"
 

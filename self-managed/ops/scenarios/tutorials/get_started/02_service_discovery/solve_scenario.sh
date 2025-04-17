@@ -367,7 +367,7 @@ for node in "${NODES_ARRAY[@]}"; do
     _RUN_CMD -r ${NODE_NAME} -e "CONSUL_HTTP_TOKEN" '/usr/bin/consul connect envoy \
    -token=${CONSUL_HTTP_TOKEN} \
   -envoy-binary /usr/bin/envoy \
-  -sidecar-for '"${NODE_NAME}"' > /tmp/sidecar-proxy.log 2>&1 &'
+  -sidecar-for '"${NODE_NAME}"' > /tmp/logs/sidecar-proxy.log 2>&1 &'
 
     md_log "The command starts the Envoy sidecar proxy in the background to not 
 lock the terminal. You can access the Envoy log through the "'`/tmp/sidecar-proxy.log`'" file. "

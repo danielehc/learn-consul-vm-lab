@@ -244,7 +244,7 @@ for node in "${NODES_ARRAY[@]}"; do
 
     md_log "Finally, start the Consul client process."
 
-    _RUN_CMD -r ${NODE_NAME} -h 'consul agent -config-dir=/etc/consul.d/ > /tmp/consul-client.log 2>&1 &'
+    _RUN_CMD -r ${NODE_NAME} -h 'consul agent -config-dir=/etc/consul.d/ > /tmp/logs/consul-client.log 2>&1 &'
 
     md_log 'The command starts the Consul server in the background to not lock the terminal. You can access the Consul server log through the `/tmp/consul-client.log` file.'
 

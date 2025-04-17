@@ -166,7 +166,7 @@ EOF
   remote_exec ${NODE_NAME} \
       "/usr/bin/consul agent \
       -log-file=/tmp/consul-client \
-      -config-dir=${CONSUL_CONFIG_DIR} > /tmp/consul-client.log 2>&1 &" 
+      -config-dir=${CONSUL_CONFIG_DIR} > /tmp/logs/consul-client.log 2>&1 &" 
   done
 done
 

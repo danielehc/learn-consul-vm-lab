@@ -82,7 +82,7 @@ EOF
       remote_copy ${NODE_NAME} "${STEP_ASSETS}monitoring/${NODE_NAME}.yaml" "~/grafana-agent.yaml" 
 
       log_debug "Start Grafana agent"
-      remote_exec ${NODE_NAME} 'bash -c "grafana-agent -config.file ~/grafana-agent.yaml > /tmp/grafana-agent.log 2>&1 &"'
+      remote_exec ${NODE_NAME} 'bash -c "grafana-agent -config.file ~/grafana-agent.yaml > /tmp/logs/grafana-agent.log 2>&1 &"'
 
     done
   done

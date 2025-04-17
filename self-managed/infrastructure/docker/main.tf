@@ -1,15 +1,4 @@
-terraform {
-  required_providers {
-    docker = {
-      source  = "kreuzwerker/docker"
-      version = "3.0.2"
-    }
-  }
-}
 
-provider "docker" {
-  host = "unix:///var/run/docker.sock"
-}
 
 # ----------------- #
 # | NETEWORK      | #
@@ -46,6 +35,11 @@ resource "docker_container" "bastion_host" {
     value = "learn-consul-vms-test"
   }
 
+  volumes {
+    container_path = "/home/${var.vm_username}/assets"
+    host_path      = abspath("${path.module}/../../../var/assets")
+  }
+  
   volumes {
     container_path = "/home/${var.vm_username}/bin"
     host_path      = abspath("${path.module}/../../../bin")
@@ -104,10 +98,19 @@ resource "docker_container" "consul_server" {
     external = format("%d", count.index + 8443)
   }
 
+  provisioner "local-exec" {
+    command = "mkdir -p ${path.module}/../../../var/logs/${self.name}"
+  }
+
+  volumes {
+    container_path = "/tmp/logs"
+    host_path      = abspath("${path.module}/../../../var/logs/consul-server-${count.index}")
+  }
+
 }
 
 # ----------------- #
-# | GATEWAYS       | #
+# | GATEWAYS      | #
 # ----------------- #
 
 resource "docker_container" "gateway_api" {
@@ -129,6 +132,15 @@ resource "docker_container" "gateway_api" {
     external = format("%d", count.index + 9443)
   }
 
+  provisioner "local-exec" {
+    command = "mkdir -p ${path.module}/../../../var/logs/${self.name}"
+  }
+
+  volumes {
+    container_path = "/tmp/logs"
+    host_path      = abspath("${path.module}/../../../var/logs/gateway-api-${count.index}")
+  }
+
 }
 
 resource "docker_container" "gateway_terminating" {
@@ -143,6 +155,15 @@ resource "docker_container" "gateway_terminating" {
   labels {
     label = "tag"
     value = "learn-consul-vms-test"
+  }
+
+  provisioner "local-exec" {
+    command = "mkdir -p ${path.module}/../../../var/logs/${self.name}"
+  }
+
+  volumes {
+    container_path = "/tmp/logs"
+    host_path      = abspath("${path.module}/../../../var/logs/gateway-terminating-${count.index}")
   }
 }
 
@@ -159,6 +180,16 @@ resource "docker_container" "gateway_mesh" {
     label = "tag"
     value = "learn-consul-vms-test"
   }
+
+  provisioner "local-exec" {
+    command = "mkdir -p ${path.module}/../../../var/logs/${self.name}"
+  }
+
+  volumes {
+    container_path = "/tmp/logs"
+    host_path      = abspath("${path.module}/../../../var/logs/gateway-mesh-${count.index}")
+  }
+
 }
 
 # ----------------- #
@@ -178,6 +209,16 @@ resource "docker_container" "consul-esm" {
     label = "tag"
     value = "learn-consul-vms-test"
   }
+
+  provisioner "local-exec" {
+    command = "mkdir -p ${path.module}/../../../var/logs/${self.name}"
+  }
+
+  volumes {
+    container_path = "/tmp/logs"
+    host_path      = abspath("${path.module}/../../../var/logs/consul-esm-${count.index}")
+  }
+
 }
 
 
@@ -202,6 +243,15 @@ resource "docker_container" "hashicups_nginx" {
     internal = "80"
     external = "8${count.index}"
   }
+
+  provisioner "local-exec" {
+    command = "mkdir -p ${path.module}/../../../var/logs/${self.name}"
+  }
+
+  volumes {
+    container_path = "/tmp/logs"
+    host_path      = abspath("${path.module}/../../../var/logs/hashicups-nginx-${count.index}")
+  }
 }
 
 resource "docker_container" "hashicups_frontend" {
@@ -215,6 +265,15 @@ resource "docker_container" "hashicups_frontend" {
   labels {
     label = "tag"
     value = "learn-consul-vms-test"
+  }
+
+  provisioner "local-exec" {
+    command = "mkdir -p ${path.module}/../../../var/logs/${self.name}"
+  }
+
+  volumes {
+    container_path = "/tmp/logs"
+    host_path      = abspath("${path.module}/../../../var/logs/hashicups-frontend-${count.index}")
   }
 
 }
@@ -232,6 +291,15 @@ resource "docker_container" "hashicups_api" {
     value = "learn-consul-vms-test"
   }
 
+  provisioner "local-exec" {
+    command = "mkdir -p ${path.module}/../../../var/logs/${self.name}"
+  }
+
+  volumes {
+    container_path = "/tmp/logs"
+    host_path      = abspath("${path.module}/../../../var/logs/hashicups-api-${count.index}")
+  }
+
 }
 
 resource "docker_container" "hashicups_db" {
@@ -245,6 +313,15 @@ resource "docker_container" "hashicups_db" {
   labels {
     label = "tag"
     value = "learn-consul-vms-test"
+  }
+
+  provisioner "local-exec" {
+    command = "mkdir -p ${path.module}/../../../var/logs/${self.name}"
+  }
+
+  volumes {
+    container_path = "/tmp/logs"
+    host_path      = abspath("${path.module}/../../../var/logs/hashicups-db-${count.index}")
   }
 }
 

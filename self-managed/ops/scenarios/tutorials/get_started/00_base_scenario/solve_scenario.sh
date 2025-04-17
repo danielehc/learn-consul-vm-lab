@@ -212,8 +212,8 @@ for i in `seq 0 "$((CONSUL_SERVER_NUMBER-1))"`; do
 
   md_log "Finally, start the Consul server process."
 
-  # _RUN_CMD -r consul-server-$i -h 'consul agent -config-dir=/etc/consul.d/ > /tmp/consul-server.log 2>&1 &'
-  _RUN_CMD -r consul-server-$i -h 'consul agent -config-dir=/etc/consul.d/ > /tmp/consul-server.log 2>&1 &'
+  # _RUN_CMD -r consul-server-$i -h 'consul agent -config-dir=/etc/consul.d/ > /tmp/logs/consul-server.log 2>&1 &'
+  _RUN_CMD -r consul-server-$i -h 'consul agent -config-dir=/etc/consul.d/ > /tmp/logs/consul-server.log 2>&1 &'
 
   md_log 'The command starts the Consul server in the background to not lock the terminal. 
   You can access the Consul server log through the `/tmp/consul-server.log` file.'

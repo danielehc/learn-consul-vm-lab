@@ -491,7 +491,7 @@ md_log "
 Once you tested the configuration, start consul-esm to run as a long lived process.
 "
 
-_RUN_CMD -r consul-esm-0 -o log "consul-esm -config-file=consul-esm-config.hcl > /tmp/consul-esm.log  2>&1 &"
+_RUN_CMD -r consul-esm-0 -o log "consul-esm -config-file=consul-esm-config.hcl > /tmp/logs/consul-esm.log  2>&1 &"
 
 _STAT="$?"
 

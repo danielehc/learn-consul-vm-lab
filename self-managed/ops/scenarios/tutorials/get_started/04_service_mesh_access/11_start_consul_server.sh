@@ -147,7 +147,7 @@ for i in `seq 0 "$((SERVER_NUMBER-1))"`; do
   remote_exec consul-server-$i \
     "/usr/bin/consul agent \
     -log-file=/tmp/consul-server-$i.${DATACENTER}.${DOMAIN} \
-    -config-dir=${CONSUL_CONFIG_DIR} > /tmp/consul-server.log 2>&1 &" 
+    -config-dir=${CONSUL_CONFIG_DIR} > /tmp/logs/consul-server.log 2>&1 &" 
 
 
   sleep 1

@@ -156,7 +156,7 @@ for node in "${NODES_ARRAY[@]}"; do
 
   md_log 'Start the Grafana Agent.'
 
-  _RUN_CMD -r ${node} -h 'grafana-agent -config.file ~/grafana-agent.yaml > /tmp/grafana-agent.log 2>&1 &'
+  _RUN_CMD -r ${node} -h 'grafana-agent -config.file ~/grafana-agent.yaml > /tmp/logs/grafana-agent.log 2>&1 &'
 
   _EXIT_FROM ${node}
 

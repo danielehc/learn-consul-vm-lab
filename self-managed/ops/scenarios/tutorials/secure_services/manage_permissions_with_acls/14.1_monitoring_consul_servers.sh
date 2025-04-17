@@ -65,7 +65,7 @@ EOF
     remote_copy consul-server-$i "${STEP_ASSETS}monitoring/consul-server-$i.yaml" "~/grafana-agent.yaml" 
 
     log_debug "Start Grafana agent"
-    remote_exec consul-server-$i 'bash -c "grafana-agent -config.file ~/grafana-agent.yaml > /tmp/grafana-agent.log 2>&1 &"'
+    remote_exec consul-server-$i 'bash -c "grafana-agent -config.file ~/grafana-agent.yaml > /tmp/logs/grafana-agent.log 2>&1 &"'
 
   done
   

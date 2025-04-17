@@ -146,7 +146,7 @@ EOF
                             -service gateway-api \
                             -token=${AGENT_TOKEN} \
                             -envoy-binary /usr/bin/envoy \
-                            ${ENVOY_EXTRA_OPT} -- -l ${ENVOY_LOG_LEVEL} > /tmp/api-gw-proxy.log 2>&1 &"
+                            ${ENVOY_EXTRA_OPT} -- -l ${ENVOY_LOG_LEVEL} > /tmp/logs/api-gw-proxy.log 2>&1 &"
 
   else
     log_warn "Consul service mesh is enabled but no API Gateway is deployed."  

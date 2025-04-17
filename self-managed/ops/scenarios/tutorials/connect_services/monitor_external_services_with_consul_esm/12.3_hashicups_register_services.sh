@@ -70,7 +70,7 @@ for node in "${NODES_ARRAY[@]}"; do
                                 -token=${_agent_token} \
                                 -envoy-binary /usr/bin/envoy \
                                 -sidecar-for ${NODE_NAME} \
-                                ${ENVOY_EXTRA_OPT} -- -l ${ENVOY_LOG_LEVEL} > /tmp/sidecar-proxy.log 2>&1 &"
+                                ${ENVOY_EXTRA_OPT} -- -l ${ENVOY_LOG_LEVEL} > /tmp/logs/sidecar-proxy.log 2>&1 &"
     fi
 
   else

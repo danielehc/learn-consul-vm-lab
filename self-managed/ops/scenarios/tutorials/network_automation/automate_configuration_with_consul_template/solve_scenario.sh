@@ -424,7 +424,7 @@ md_log "
 Once you tested the configuration, start consul-template to run as a long lived process.
 "
 
-_RUN_CMD -r hashicups-nginx-0 -o log "consul-template -config=consul_template.hcl > /tmp/consul-template.log  2>&1 &"
+_RUN_CMD -r hashicups-nginx-0 -o log "consul-template -config=consul_template.hcl > /tmp/logs/consul-template.log  2>&1 &"
 
 _STAT="$?"
 
@@ -782,7 +782,7 @@ md_log "
 Start consul-template with the new configuration file.
 "
 
-_RUN_CMD -r hashicups-nginx-0 -o log "consul-template -config=consul_template_weights.hcl > /tmp/consul-template.log  2>&1 &"
+_RUN_CMD -r hashicups-nginx-0 -o log "consul-template -config=consul_template_weights.hcl > /tmp/logs/consul-template.log  2>&1 &"
 
 _STAT="$?"
 

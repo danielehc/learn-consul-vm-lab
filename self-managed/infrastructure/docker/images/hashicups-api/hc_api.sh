@@ -192,15 +192,15 @@ fi
 
 ## Once configuration is created startup process is equivalent for all cases.
 echo "Starting payments application"
-java -jar /bin/spring-boot-payments.jar > /tmp/payments.log 2>&1 &
+java -jar /bin/spring-boot-payments.jar > /tmp/logs/payments.log 2>&1 &
 
 echo "Starting Product API"
 export CONFIG_FILE="/home/admin/conf.json"
-/bin/product-api > /tmp/product_api.log 2>&1 &
+/bin/product-api > /tmp/logs/product_api.log 2>&1 &
 
 echo "Starting Public API"
 export PRODUCT_API_URI="http://localhost:9090"
 export PAYMENT_API_URI="http://localhost:8080"
-/bin/public-api > /tmp/public_api.log 2>&1 &
+/bin/public-api > /tmp/logs/public_api.log 2>&1 &
 
 ## -----------------------------------------------------------------------------

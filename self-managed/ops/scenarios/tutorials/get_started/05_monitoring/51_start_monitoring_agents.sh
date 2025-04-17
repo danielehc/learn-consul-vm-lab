@@ -72,7 +72,7 @@ EOF
 
   log "Start Grafana agent"
   # set -x
-  remote_exec -o consul-server-$i "bash -c '/usr/bin/grafana-agent -config.file ~/grafana-agent.yaml > /tmp/grafana-agent.log 2>&1 &'"
+  remote_exec -o consul-server-$i "bash -c '/usr/bin/grafana-agent -config.file ~/grafana-agent.yaml > /tmp/logs/grafana-agent.log 2>&1 &'"
 
   # set +x
 
@@ -148,7 +148,7 @@ EOF
 
     log "Start Grafana agent"
 
-    remote_exec -o ${NODE_NAME} "bash -c '/usr/bin/grafana-agent -config.file ~/grafana-agent.yaml > /tmp/grafana-agent.log 2>&1 &'"
+    remote_exec -o ${NODE_NAME} "bash -c '/usr/bin/grafana-agent -config.file ~/grafana-agent.yaml > /tmp/logs/grafana-agent.log 2>&1 &'"
     
     set +x 
 

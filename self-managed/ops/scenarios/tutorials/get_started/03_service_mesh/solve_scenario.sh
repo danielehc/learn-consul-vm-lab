@@ -220,7 +220,7 @@ export CONSUL_DATA_DIR=/opt/consul/'
 
   md_log 'Finally, start the Consul server process.'
 
-  _RUN_CMD -r ${NODE_NAME} -h -e "CONSUL_CONFIG_DIR" 'consul agent -config-dir=${CONSUL_CONFIG_DIR} > /tmp/consul-client.log 2>&1 &'
+  _RUN_CMD -r ${NODE_NAME} -h -e "CONSUL_CONFIG_DIR" 'consul agent -config-dir=${CONSUL_CONFIG_DIR} > /tmp/logs/consul-client.log 2>&1 &'
 
   sleep 5
 
@@ -479,7 +479,7 @@ for i in `seq ${api_gw_NUMBER}`; do
   -register \
   -service gateway-api \
   -token=${CONSUL_AGENT_TOKEN} \
-  -envoy-binary /usr/bin/envoy > /tmp/api-gw-proxy.log 2>&1 &'
+  -envoy-binary /usr/bin/envoy > /tmp/logs/api-gw-proxy.log 2>&1 &'
 
   _EXIT_FROM ${NODE_NAME}
 

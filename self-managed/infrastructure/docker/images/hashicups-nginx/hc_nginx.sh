@@ -193,7 +193,7 @@ for i in `seq ${START_ATTEMPT}`; do
 
     if [ `pidof nginx | wc -w` -eq "0" ]; then
         echo "Starting NGINX...attempt $i" 
-        /usr/sbin/nginx >> /tmp/nginx.log 2>&1 &
+        /usr/sbin/nginx >> /tmp/logs/nginx.log 2>&1 &
         sleep ${SLEEP_INTERVAL}
     fi
 
